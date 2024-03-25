@@ -14,3 +14,8 @@ exports.signUpValidation=[
     }).withMessage('Please upload and image type PNG,JPG')
 
 ]
+
+exports.loginValidation =[
+    check('email','Please enter valid email').isEmail().normalizeEmail({gmail_remove_dots:true}),
+    check('password','Password is required').isLength({min:6}),
+]
