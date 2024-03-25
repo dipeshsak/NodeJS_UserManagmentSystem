@@ -1,7 +1,10 @@
 const {validationResult} = require('express-validator');
 const bcrypt = require('bcryptjs')
 
-const db = require('../config/dbConnection')
+const db = require('../config/dbConnection');
+
+const randomstring = require('randomstring');
+const sendMail = require('../helpers/sendMail')
 
 const register =(req,res)=>{
     console.log("REQ IS",req.body)
@@ -36,6 +39,23 @@ const register =(req,res)=>{
                                 msg:err
                             })
                         }
+
+                        let mailSubject = 'Mail Verification';
+                        const randomToken = randomstring.generate();
+                        let content = '<p> Hi '+req.body.name +', \
+                        Please <a href="http://localhost:3000/mail-verification?token='+randomToken+'"> Verify </a> your Mail.  </p>'
+
+                        sendMail(req.body.email,mailSubject,content);
+
+                        db.query('UPDATE users SET token=? WHERE email=?',[randomToken,req.body.email],function(error,result,fields){
+
+
+                            if(error){
+                                return res.status(400).send({
+                                    msg:error
+                                })
+                            }
+                        })
 
                         return res.status(201).send({
                             msg:'User register Suceess'
