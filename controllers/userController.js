@@ -10,6 +10,9 @@ const register =(req,res)=>{
     console.log("REQ IS",req.body)
    const errors = validationResult(req)
 
+   console.log("REQ IS errors",req.file)
+
+
    if(!errors.isEmpty()){
     return res.status(400).json({errors:errors.array() });
    }
@@ -32,7 +35,7 @@ const register =(req,res)=>{
                 console.log("IN ELSE HASHING PASSWORD",hash)
 
                 db.query(
-                    `INSERT INTO users (name,email,password) VALUES ('${req.body.name}',${db.escape(req.body.email)},${db.escape(hash)});`,
+                    `INSERT INTO users (name,email,password,image) VALUES ('${req.body.name}',${db.escape(req.body.email)},${db.escape(hash)},'images/${req.file.filename}');`,
                     (err,result)=>{
                         if(err){
                             return res.status(500).send({
