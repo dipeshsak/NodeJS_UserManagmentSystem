@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoute')
 require('./config/dbConnection')
 
+const webRouter = require('./routes/webRoute');
+
 const app = express();
 app.use(express.json());
 app.use(bodyParser.json());
@@ -14,6 +16,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(cors());
 
 app.use('/api',userRouter)
+app.use('/',webRouter)
 
 // Error Handling
 app.use((err,req,res,next)=>{

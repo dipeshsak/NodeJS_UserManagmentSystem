@@ -4,3 +4,5 @@
 
 3 - while user register we can accept accept png ot jpeg image as well using multer
 
+4 - Verify user email and dynamic data send using ejs also remove token from db column and put is_verified column as 1 if user is successfully verified the mail.
+
