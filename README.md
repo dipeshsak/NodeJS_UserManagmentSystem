@@ -7,3 +7,5 @@
 4 - Verify user email and dynamic data send using ejs also remove token from db column and put is_verified column as 1 if user is successfully verified the mail.
 
 5 - Login API route comapre password using bcrypt compare
+
+6 - get-user route using bearer token 

@@ -26,4 +26,6 @@ const userController = require('../controllers/userController')
 router.post('/register',upload.single('image'),signUpValidation,userController.register)
 router.post('/login',loginValidation,userController.login);
 
+router.get('/get-user',userController.getUser)
+
 module.exports = router;
