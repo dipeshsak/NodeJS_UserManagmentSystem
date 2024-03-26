@@ -23,9 +23,11 @@ const upload = multer({storage:storage,fileFilter:filefilter})
 
 const userController = require('../controllers/userController')
 
+const auth = require('../middleware/auth')
+
 router.post('/register',upload.single('image'),signUpValidation,userController.register)
 router.post('/login',loginValidation,userController.login);
 
-router.get('/get-user',userController.getUser)
+router.get('/get-user',auth.isAuthorize,userController.getUser)
 
 module.exports = router;
