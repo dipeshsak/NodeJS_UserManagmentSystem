@@ -8,4 +8,8 @@
 
 5 - Login API route comapre password using bcrypt compare
 
-6 - get-user route using bearer token 
+6 - get-user route using bearer token & auth middleware for bearer token added
+
+7 - update profile (image is optional)
+
+8 - Forgot and Rest Password => Pending...

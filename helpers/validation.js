@@ -19,3 +19,8 @@ exports.loginValidation =[
     check('email','Please enter valid email').isEmail().normalizeEmail({gmail_remove_dots:true}),
     check('password','Password is required').isLength({min:6}),
 ]
+
+exports.updateProfileValidation =[
+    check('name','Name is required').not().isEmpty(),
+    check('email','Please enter valid email').isEmail().normalizeEmail({gmail_remove_dots:true}),
+]

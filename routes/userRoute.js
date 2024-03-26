@@ -1,5 +1,5 @@
 const express = require('express');
-const { signUpValidation,loginValidation } = require('../helpers/validation');
+const { signUpValidation,loginValidation,updateProfileValidation } = require('../helpers/validation');
 const router = express.Router();
 
 const path = require('path');
@@ -29,5 +29,7 @@ router.post('/register',upload.single('image'),signUpValidation,userController.r
 router.post('/login',loginValidation,userController.login);
 
 router.get('/get-user',auth.isAuthorize,userController.getUser)
+router.post('/update-profile',upload.single('image'),updateProfileValidation,auth.isAuthorize,userController.updateProfile)
+
 
 module.exports = router;
